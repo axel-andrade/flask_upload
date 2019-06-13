@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Lista de uploads</h1>
+        <hr>
+        <table>
+            <tr>
+            <td>Código</td>
+            <td>Arquivo</td>
+            <td>Usuário</td>
+            <td></td>
+            <td></td>
+            </tr>
+            {% for upload in uploads %}
+
+                <tr>
+                <td>{{ upload[0] }}</td>
+                <td>{{ upload[1] }}</td>
+                <td>{{ upload[2] }} 
+                <td><a href="/uploads/{{ upload[1] }}">Baixar</td>
+                <td><a href="/delete/{{ upload[0] }}">Excluir</td>
+                </tr>
+                
+            {% endfor %}
+
+        </table>
+    </body>
+</html>

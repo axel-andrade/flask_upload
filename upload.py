@@ -13,6 +13,7 @@ def createUpload(filename, username):
    conn.close()
 
 def getUploads():
+    uploads = []
     conn = sqlite3.connect('flask.db')
     cursor = conn.cursor()
 
@@ -22,6 +23,28 @@ def getUploads():
         """)
 
     for linha in cursor.fetchall():
-        return linha[1]
+        uploads.append(linha)
 
     conn.close()
+
+    return uploads
+
+def deleteUpload(id):
+        print("ID", id)
+        conn = sqlite3.connect('flask.db')
+        cursor = conn.cursor()
+
+        # excluindo um registro da tabela
+        cursor.execute("""
+        DELETE FROM uploads
+        WHERE id = ?
+        """, (id,))
+
+        conn.commit()
+
+        print('Registro excluido com sucesso.')
+
+        conn.close()
+
+def hello():
+    print("teste")
